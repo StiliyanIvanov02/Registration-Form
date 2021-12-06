@@ -82,7 +82,7 @@ require_once('config.php');
 
 				$.ajax({
 					type: 'POST',
-					url: 'process.php',
+					url: 'process_registration.php',
 					data: {firstname: firstname,lastname: lastname,email: email,phonenumber: phonenumber,password: password},
 					success: function(data){
 					Swal.fire({
@@ -95,7 +95,7 @@ require_once('config.php');
 					error: function(data){
 						Swal.fire({
 								'title': 'Errors',
-								'text': 'There were errors while saving the data.',
+								'text': data,
 								'type': 'error'
 								})
 					}

@@ -16,7 +16,7 @@ if($result){
 		$_SESSION['userlogin'] = $user;
 		echo 'Logged';
 	}else{
-		echo 'There no user with these credentials.';		
+		echo 'There is no user with these credentials.';		
 	}
 }else{
 	echo 'There were errors while connecting to database.';

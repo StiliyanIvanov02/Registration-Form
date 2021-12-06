@@ -74,7 +74,7 @@
 
 			$.ajax({
 				type: 'POST',
-				url: 'jslogin.php',
+				url: 'process_login.php',
 				data:  {username: username, password: password},
 				success: function(data){
 					alert(data);
