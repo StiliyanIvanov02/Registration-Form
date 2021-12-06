@@ -69,15 +69,13 @@ require_once('config.php');
 			var valid = this.form.checkValidity();
 
 			if(valid){
-
-
-			var firstname 	= $('#firstname').val();
-			var lastname	= $('#lastname').val();
-			var email 		= $('#email').val();
-			var phonenumber = $('#phonenumber').val();
-			var password 	= $('#password').val();
 			
-
+				var firstname 	= $('#firstname').val();
+				var lastname	= $('#lastname').val();
+				var email 		= $('#email').val();
+				var phonenumber = $('#phonenumber').val();
+				var password 	= $('#password').val();
+			
 				e.preventDefault();	
 
 				$.ajax({
@@ -89,32 +87,19 @@ require_once('config.php');
 								'title': 'Successful',
 								'text': data,
 								'type': 'success'
-								})
-							
-					},
+								});
+					setTimeout('window.location.href =  "login.php"',1000);
+							},
 					error: function(data){
 						Swal.fire({
 								'title': 'Errors',
 								'text': data,
 								'type': 'error'
-								})
+							})
 					}
-				});
-
-				
-			}else{
-				
-			}
-
-			
-
-
-
-		});		
-
-		
+				});				
+			}});				
 	});
-	
 </script>
 </body>
 </html>

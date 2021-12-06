@@ -28,20 +28,20 @@
 						<div class="input-group-append">
 							<span class="input-group-text"></span>					
 						</div>
-						<input type="text" name="username" id="username" class="form-control input_user" required>
+						<input type="text" name="email" id="email" class="form-control input_user" placeholder="Email" required>
 					</div>
 					<div class="input-group mb-2">
 						<div class="input-group-append">
 							<span class="input-group-text"></span>					
 						</div>
-						<input type="password" name="password" id="password" class="form-control input_pass" required>
+						<input type="password" name="password" id="password" class="form-control input_pass" placeholder="Password" required>
 					</div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<div class="custom-control custom-checkbox">
 							<input type="checkbox" name="rememberme" class="custom-control-input" id="customControlInline">
 							<label class="custom-control-label" for="customControlInline">Remember me</label>
 						</div>
-					</div>
+					</div> -->
 					<div class="d-flex justify-content-center mt-3 login_container">
 						<button type="button" name="button" id="login" class="btn login_btn">Login</button> 
 					</div>
@@ -66,7 +66,7 @@
 			var valid = this.form.checkValidity();
 
 			if(valid){
-				var username = $('#username').val();
+				var email = $('#email').val();
 				var password = $('#password').val();
 			}
 
@@ -75,11 +75,10 @@
 			$.ajax({
 				type: 'POST',
 				url: 'process_login.php',
-				data:  {username: username, password: password},
+				data:  {email: email, password: password},
 				success: function(data){
-					alert(data);
 					if($.trim(data) === "Logged"){
-						setTimeout(' window.location.href =  "index.php"', 1000);
+						window.location.href = "index.php";
 					}
 				},
 				error: function(data){
