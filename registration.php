@@ -4,23 +4,19 @@ require_once('config.php');
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Registration Form</title>
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
 
-<div>
-	<?php
-	
-	?>	
-</div>
-
 <div class="container h-100">
 	<div class="d-flex justify-content-center h-100">
 		<div class="user_card">
 		<div class="d-flex justify-content-center">
-				<h2 class="text-muted pt-5">REGISTER</h2>
+				<h2 style="color: #7d4e78" class="text-muted pt-5">REGISTER</h2>
 			</div>	
 			<div class="d-flex justify-content-center form_container">
 				<form action="registration.php" method="post">
@@ -28,13 +24,13 @@ require_once('config.php');
 						<div class="input-group-append">
 							<span class="input-group-text"></span>					
 						</div>
-						<input type="text" name="firstname" id="firstname" class="form-control input_user" placeholder="First name" required>
+						<input type="text" name="first_name" id="first_name" class="form-control input_user" placeholder="First name" required>
 					</div>
 					<div class="input-group mb-1">
 						<div class="input-group-append">
 							<span class="input-group-text"></span>					
 						</div>
-						<input type="text" name="lastname" id="lastname" class="form-control input_user" placeholder="Last name" required>
+						<input type="text" name="last_name" id="last_name" class="form-control input_user" placeholder="Last name" required>
 					</div>
 					<div class="input-group mb-1">
 						<div class="input-group-append">
@@ -46,7 +42,7 @@ require_once('config.php');
 						<div class="input-group-append">
 							<span class="input-group-text"></span>					
 						</div>
-						<input type="phone" name="phonenumber" id="phonenumber" class="form-control input_user" placeholder="Phone" required>
+						<input type="phone" name="phone_number" id="phone_number" class="form-control input_user" placeholder="Phone" required>
 					</div>
 					<div class="input-group mb-1">
 						<div class="input-group-append">
@@ -54,7 +50,7 @@ require_once('config.php');
 						</div>
 						<input type="password" name="password" id="password" class="form-control input_pass" placeholder="Password" required>
 					</div>
-					<input class="btn login_btn" type="submit" id="register" name="create" value="Sign Up">
+					<input class="btn login_btn" type="submit" id="register" name="register" value="Sign Up">
 			</div>
 			</form>
 		</div>
@@ -70,11 +66,11 @@ require_once('config.php');
 
 			if(valid){
 			
-				var firstname 	= $('#firstname').val();
-				var lastname	= $('#lastname').val();
-				var email 		= $('#email').val();
-				var phonenumber = $('#phonenumber').val();
-				var password 	= $('#password').val();
+				var firstname 			= $('#first_name').val();
+				var lastname			= $('#last_name').val();
+				var email 				= $('#email').val();
+				var phonenumber 		= $('#phone_number').val();
+				var password 			= $('#password').val();
 			
 				e.preventDefault();	
 
@@ -83,19 +79,19 @@ require_once('config.php');
 					url: 'process_registration.php',
 					data: {firstname: firstname,lastname: lastname,email: email,phonenumber: phonenumber,password: password},
 					success: function(data){
-					Swal.fire({
-								'title': 'Successful',
+						Swal.fire({
+								'title': 'Successful registration',
 								'text': data,
 								'type': 'success'
 								});
-					setTimeout('window.location.href =  "login.php"',1000);
+						setTimeout('window.location.href =  "login.php"',3000);
 							},
 					error: function(data){
 						Swal.fire({
 								'title': 'Errors',
-								'text': data,
+								'text': data.message,
 								'type': 'error'
-							})
+							});
 					}
 				});				
 			}});				

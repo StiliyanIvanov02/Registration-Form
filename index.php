@@ -28,7 +28,7 @@ session_start();
 			<div class="user_card">
 			<div class="d-flex justify-content-center">
 				<?php
-					echo '<h2 class="text-muted pt-5">WELCOME '.$user['firstname'].'!</h2>';
+					echo '<h2 style="color: #7d4e78" class="text-muted pt-5">WELCOME '.$user['firstname'].'!</h2>';
 				?>
 			</div>	
 				<div class="d-flex justify-content-center form_container">

@@ -11,6 +11,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Login form</title>
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
@@ -20,10 +22,10 @@
 	<div class="d-flex justify-content-center h-100">
 		<div class="user_card">
 		<div class="d-flex justify-content-center">
-				<h2 class="text-muted pt-5">LOGIN</h2>
+				<h2 style="color: #7d4e78" class="text-muted pt-5">LOGIN</h2>
 			</div>	
 			<div class="d-flex justify-content-center form_container">
-				<form>
+				<form action="login.php" method="post">
 					<div class="input-group mb-3">
 						<div class="input-group-append">
 							<span class="input-group-text"></span>					
@@ -36,14 +38,9 @@
 						</div>
 						<input type="password" name="password" id="password" class="form-control input_pass" placeholder="Password" required>
 					</div>
-					<!-- <div class="form-group">
-						<div class="custom-control custom-checkbox">
-							<input type="checkbox" name="rememberme" class="custom-control-input" id="customControlInline">
-							<label class="custom-control-label" for="customControlInline">Remember me</label>
-						</div>
-					</div> -->
+					<span id="message" style="color:#3f1c3f"></span>
 					<div class="d-flex justify-content-center mt-3 login_container">
-						<button type="button" name="button" id="login" class="btn login_btn">Login</button> 
+						<input type="submit" name="login" id="login" class="btn login_btn" value="Log in">
 					</div>
 			</div>
 			</form>
@@ -68,24 +65,27 @@
 			if(valid){
 				var email = $('#email').val();
 				var password = $('#password').val();
-			}
 
-			e.preventDefault();
+				e.preventDefault();
 
-			$.ajax({
-				type: 'POST',
-				url: 'process_login.php',
-				data:  {email: email, password: password},
-				success: function(data){
-					if($.trim(data) === "Logged"){
-						window.location.href = "index.php";
+				$.ajax({
+					type: 'POST',
+					url: 'process_login.php',
+					data:  {email: email, password: password},
+					success: function(data){
+						if($.trim(data) === "Logged"){
+							window.location.href = "index.php";
+						}
+						else
+						{
+							document.getElementById('message').textContent=data;
+						}
+					},
+					error: function(data){
+						document.getElementById('message').textContent=data;
 					}
-				},
-				error: function(data){
-					alert('there were erros while doing the operation.');
-				}
-			});
-
+				});
+			}
 		});
 	});
 </script>
