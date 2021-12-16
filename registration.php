@@ -89,7 +89,7 @@ require_once('config.php');
 					error: function(data){
 						Swal.fire({
 								'title': 'Errors',
-								'text': data.message,
+								'text': data,
 								'type': 'error'
 							});
 					}

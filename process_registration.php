@@ -19,17 +19,12 @@ if(isset($_POST)){
 	$token       		= sha1($_POST['email']).rand(10,9999);
 	$email_verification_link  = "<a href='localhost/registration_form/verify_email.php?key=".$_POST['email']."&token=".$token."'>Click and Verify Email</a>";
 
+	try
+	{
 		$sql = "INSERT INTO users (firstname, lastname, email, phonenumber, password, token, email_verification_link ) VALUES(?,?,?,?,?,?,?)";
-		try
-		{
-			$stmtinsert = $db->prepare($sql);
-			$result = $stmtinsert->execute([$firstname, $lastname, $email, $phonenumber, $password, $token, $email_verification_link]);
-		}
-		catch(PDOException $e)
-		{
-			echo "Error: " . $e->getMessage();
-			http_response_code(500);
-		}
+		$stmtinsert = $db->prepare($sql);
+		$result = $stmtinsert->execute([$firstname, $lastname, $email, $phonenumber, $password, $token, $email_verification_link]);
+		
 		if($result)
 		{
 			$mail = new PHPMailer();
@@ -61,12 +56,9 @@ if(isset($_POST)){
 
 			$mail->smtpClose();
 		}
-		else
-		{
-			echo json_encode(
-				array(
-					"status" => "500",
-					"message" => "There was a problem with your registration. Please try again.")
-			);
-		}
+	}
+	catch(PDOException $e)
+	{
+		echo "There was a problem with your registration. Please try again.";
+	}
 }
